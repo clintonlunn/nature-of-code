@@ -1,41 +1,23 @@
-/// <reference path="p5.global-mode.d.ts" />
+// <reference path="p5.global-mode.d.ts" />
 
-// let xoff1 = 0;
-// let xoff2 = 10000;
 let inc = 0.01
-let start = 0;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(200, 200);
 }
 
 function draw() {
-  background(50)
-  noFill();
-  beginShape();
-  let xoff = start;
+  loadPixels();
   for (let x = 0; x < width; x++) {
-    stroke(200)
-
-    const n = map(noise(xoff), 0, 1, -50, 50);
-    const s = map(sin(xoff), -1, 1, 0, height);
-    var y = n + s;
-
-    vertex(x, y)
-    xoff += inc;
+    for (let y = 0; y < height; y++) {
+      var index = (x + y * width) * 4;
+      let r = random(255);
+      pixels[index + 0] = r;
+      pixels[index + 1] = r;
+      pixels[index + 2] = r;
+      pixels[index + 3] = 255;
+    }
   }
-  start += inc;
-  endShape();
-  // noLoop();
-
-  // var x = map(noise(xoff1), 0, 1, 0, width)
-  // var y = map(noise(xoff2), 0, 1, 0, height)
-
-
-
-  // xoff1 += .01;
-  // xoff2 += .01;
-
-
-  // ellipse(x, y, 24, 24, width);
+  updatePixels();
+  // start += inc;
 }
