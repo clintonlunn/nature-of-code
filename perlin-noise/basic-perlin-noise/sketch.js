@@ -16,7 +16,11 @@ function draw() {
   let xoff = start;
   for (let x = 0; x < width; x++) {
     stroke(200)
-    let y = noise(xoff) * height
+
+    const n = map(noise(xoff), 0, 1, -50, 50);
+    const s = map(sin(xoff), -1, 1, 0, height);
+    var y = n + s;
+
     vertex(x, y)
     xoff += inc;
   }
