@@ -1,4 +1,7 @@
-let xoff = 0;
+/// <reference path="p5.global-mode.d.ts" />
+
+// let xoff1 = 0;
+// let xoff2 = 10000;
 
 function setup() {
   createCanvas(400, 400);
@@ -7,9 +10,25 @@ function setup() {
 function draw() {
   background(50)
   // var x = random(width)
-  var x = map(noise(xoff), 0, 1, 0, width)
+  noFill();
+  beginShape();
 
-  xoff += .01;
+  for (let x = 0; x < width; x++) {
+    stroke(200)
+    vertex(x, random(height))
+  }
 
-  ellipse(x, 200, 24, 24, width);
+  endShape();
+  noLoop();
+
+  // var x = map(noise(xoff1), 0, 1, 0, width)
+  // var y = map(noise(xoff2), 0, 1, 0, height)
+
+
+
+  // xoff1 += .01;
+  // xoff2 += .01;
+
+
+  // ellipse(x, y, 24, 24, width);
 }
